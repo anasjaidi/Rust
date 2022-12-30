@@ -22,12 +22,16 @@ fn main() {
     // compund
     // tuple: A fixed-size collection of values with different types.
     let mut t: (i8, char, bool) = (1, 'c', true);
+
     let  (mut a,b,c) = t;
+
     a = 2;
     let n = t.0;
     // array: A fixed-size array type, where the size is specified as part of the type.
     let arr : [u8; 3] = [1,2,4];
+    
     println!("{}", arr[1]);
+
     for i in arr.iter() {
         println!("{}", i);
     }
