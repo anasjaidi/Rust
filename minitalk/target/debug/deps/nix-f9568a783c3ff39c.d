@@ -1,0 +1,16 @@
+/Users/ajaidi/Documents/rust/minitalk/target/debug/deps/nix-f9568a783c3ff39c.rmeta: /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/lib.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/macros.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/errno.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/fcntl.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/mod.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/signal.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/time.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/unistd.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/stat.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/statfs.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/statvfs.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/wait.rs
+
+/Users/ajaidi/Documents/rust/minitalk/target/debug/deps/nix-f9568a783c3ff39c.d: /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/lib.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/macros.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/errno.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/fcntl.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/mod.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/signal.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/time.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/unistd.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/stat.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/statfs.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/statvfs.rs /Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/wait.rs
+
+/Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/lib.rs:
+/Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/macros.rs:
+/Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/errno.rs:
+/Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/fcntl.rs:
+/Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/mod.rs:
+/Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/signal.rs:
+/Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/time.rs:
+/Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/unistd.rs:
+/Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/stat.rs:
+/Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/statfs.rs:
+/Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/statvfs.rs:
+/Users/ajaidi/.cargo/registry/src/github.com-1ecc6299db9ec823/nix-0.25.0/src/sys/wait.rs:
