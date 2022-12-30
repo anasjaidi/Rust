@@ -1,4 +1,4 @@
+#[allow(unused)]
 fn main() {
-  let mut i: u8 = 255;
-  i +=1;
+  let i = 1;
 }
