@@ -1,4 +1,6 @@
 use unicode_segmentation::UnicodeSegmentation;
+use std::iter::FromIterator;
+
 
 #[allow(unused)]
 fn main() {
@@ -67,6 +69,108 @@ fn main() {
     }
     /* --------------------------------------------------------------------------------------- */
     /* --------------------------------------------------------------------------------------- */
+    {
+        let mut s = String::new(); // create a new, empty String
+
+        s.push('H'); // add a character to the end of the String
+        s.push_str("ello"); // add a string to the end of the String
+
+        assert_eq!(s.len(), 5); // check the length of the String
+
+        s.reserve_exact(10); // increase the capacity of the String to at least 15 bytes
+
+        assert!(s.capacity() == 15); // check the length of the String
+
+        s.reserve_exact(20); // increase the capacity of the String to exactly 25 bytes
+        assert_eq!(s.capacity(), 25);
+
+        s.shrink_to_fit(); // reduce the capacity of the String to the minimum required to hold its contents
+
+        assert_eq!(s.is_empty(), false); // check if the String is empty
+
+        assert_eq!(s.pop(), Some('o')); // remove and return the last character of the String
+
+        s.truncate(3); // remove all characters from the String after the third
+
+        assert_eq!(s.get(0..1), Some("H")); // get a slice of the String
+
+        s.clear(); // remove all characters from the String, making it empty
+
+        assert_eq!(s.is_empty(), true);
+
+        let w = "worldw";
+
+        s.push_str(w); // add a string to the end of the String
+
+        assert_eq!(s.find('w'), Some(0)); // find the index of the first occurrence of a character in the String
+
+        assert_eq!(s.rfind('w'), Some(5)); // find the index of the last occurrence of a character in the String
+
+        let v: Vec<&str> = s.split('r').collect(); // split the String into a Vec of substrings at each occurrence of a character
+
+        s.replace_range(0..1, "A"); // replace a range of characters in the String with new characters
+
+        let mut t = "   hello   ".to_string();
+
+        let trimed = t.trim(); // remove leading and trailing whitespace from the String
+
+        assert_eq!(trimed, "hello");
+
+        let trimed = t.trim_start(); // remove leading whitespace from the String
+
+        assert_eq!(trimed, "hello   ");
+
+        let trimed = t.trim_end(); // remove trailing whitespace from the String
+
+        assert_eq!(trimed, "   hello");
+
+        let trimed = t.trim_matches(' '); // remove leading and trailing occurrences of a character from the String
+
+        assert_eq!(trimed, "hello");
+
+        let trimed = trimed.trim_start_matches('h'); // remove leading occurrences of a character from the String
+
+        assert_eq!(trimed, "ello");
+
+        let trimed = trimed.trim_end_matches('o'); // remove trailing occurrences of a character from the String
+
+        assert_eq!(trimed, "ell");
+
+        let num: Option<f32> = "42.9".parse().ok(); // parse the String into a value of a given type
+
+        let mut chars: Vec<char> = trimed.chars().collect(); // get an iterator over the characters in the String
+
+        assert_eq!(chars, ['e', 'l', 'l']);
+
+        chars.reverse(); // reverse the order of the characters in the Vec
+
+        let reversed = String::from_iter(&chars);
+
+        assert_eq!(reversed, "lle");
+
+        let mut bytes: Vec<u8> = trimed.bytes().collect(); // get an iterator over the bytes in the String
+
+        assert_eq!(bytes, [101, 108, 108]);
+
+        bytes.reverse(); // reverse
+
+        let reversed: String = String::from_utf8(bytes).unwrap(); // create a new String from a byte array
+        
+        
+        assert_eq!(reversed, "lle");
+
+        let mut ind: Vec<(usize, char)> = reversed.char_indices().collect(); 
+
+        assert_eq!(ind[0], (0, 'l'));
+
+        ind.reverse();
+
+        let mut s: String = ind.into_iter().map(|(_, c)| c).collect();
+
+        println!("string: {:#?}",s);
+
+
+    }
     /* --------------------------------------------------------------------------------------- */
     /* --------------------------------------------------------------------------------------- */
     /*
