@@ -2,9 +2,21 @@
 name = "book"
 version = "0.1.0"
 edition = "2021"
+build = "src/main.rs"
+# authors = "anas jaidi"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[[bin]]
+name = "main"
+path= "src/main.rs"
+
+
+[package.metadata.default-run]
+binary = "my_bain"
+
+
 [dependencies]
+unicode-segmentation = "1.10.0"
 rand = "0.8.5"
 colored = "2.0.0"
