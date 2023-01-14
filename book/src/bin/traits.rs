@@ -1,3 +1,4 @@
+#![allow(unused)]
 use std::fmt::{format, Display, Debug};
 
 #[derive(Debug)]
@@ -17,7 +18,7 @@ struct NewsArticle {
 
 
 impl Summary for Tweet {
-  fn Summrise_author(& self) -> String {
+  fn summrise_author(& self) -> String {
       format!("{}", self.username)
   }
   fn summrise(&self) -> String {
@@ -26,7 +27,7 @@ impl Summary for Tweet {
 }
 
 impl Summary for NewsArticle {
-  fn Summrise_author(& self) -> String {
+  fn summrise_author(& self) -> String {
       format!("{}", self.author)
   }
   // fn summrise(&self) -> String {
@@ -54,9 +55,9 @@ fn notify1(ob1j: &(impl Summary + Debug), obj2: &(impl Summary + Debug)) -> Stri
 
 
 trait Summary {
-  fn Summrise_author(& self) -> String;
+  fn summrise_author(& self) -> String;
   fn summrise(&self) -> String {
-    format!("Read more! from {}.", self.Summrise_author())
+    format!("Read more! from {}.", self.summrise_author())
   }
 }
 
