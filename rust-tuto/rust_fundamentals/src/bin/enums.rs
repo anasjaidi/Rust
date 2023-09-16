@@ -19,4 +19,5 @@ fn main() {
     let a = Direction::Down;
 
     println!("{:?}", dir(a));
+    println!("{:?}", dir(Direction::Up));
 }
