@@ -5,7 +5,7 @@ enum AccessType {
     Manager,
 }
 
-fn check_access(access_type: AccessType) -> bool{
+fn check_access(access_type: AccessType) -> bool {
     let user_have_access = match access_type {
         AccessType::Admin => true,
         AccessType::Manager => true,
