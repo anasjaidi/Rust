@@ -1,6 +1,7 @@
 struct Error {
     name: String,
     code: u8,
+    stack: Vec<String>,
 }
 
 enum MainMenu {
@@ -17,21 +18,29 @@ fn get_menu(str: &str) -> Result<MainMenu, Error> {
         _ => Err(Error {
             name: "invalid_choice".to_owned(),
             code: 112,
+            stack: vec![str.to_owned()],
         }),
     }
 }
 
 fn main() {
-    let choice = "platnium";
+    let choice = "platniumu";
     let res = get_menu(choice);
     match res {
-        Err(err) => {
-            print!("error occured ");
-            println!(
-                "error name: {} for debug search on this code {}",
-                err.name, err.code
-            );
-        }
+        Err(err) => match err {
+            Error {
+                name, code: 112, ..
+            } if name == "invalid_choice".to_owned() => {
+                println!("choice slected is not valid");
+            }
+            other => {
+                print!("error occured ");
+                println!(
+                    "error name: {} for debug search on this code {}",
+                    other.name, other.code
+                );
+            }
+        },
         Ok(menu_choice) => match menu_choice {
             MainMenu::Platnium(grade) => {
                 println!("you choised platium choice with grade of {}", grade)
@@ -44,4 +53,12 @@ fn main() {
             }
         },
     }
+    let d  = bar(Err("anas".to_owned()));
+    println!("{:?}", d)
+}
+
+fn bar(opt: Result<i32, String>) -> Result<(), String> {
+    let a = opt?;
+    println!("{:?}",a);
+    Ok(())
 }
