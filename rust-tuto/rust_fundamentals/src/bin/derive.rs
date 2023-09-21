@@ -6,7 +6,7 @@ struct Test {
 fn foo(t: Test) {
     println!("{:?}", t)
 }
-
+ 
 fn main() {
     let mut t =  Test { num: 12 };
     foo(t);
