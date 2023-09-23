@@ -1,3 +1,4 @@
+#[allow(unused)]
 struct Error {
     name: String,
     code: u8,

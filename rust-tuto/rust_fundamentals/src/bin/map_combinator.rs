@@ -7,6 +7,9 @@ fn main() {
         None => None,
         Some(num) => Some(num + 1),
     };
+    println!("{:?}", a);
+    println!("{:?}", a);
 
-    let a = some().map(|n| n + 1).map(|n| n * 2);
+    let b = some().map(|n| n + 1).map(|n| n * 2);
+    println!("{:?}", b);
 }

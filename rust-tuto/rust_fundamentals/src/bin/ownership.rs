@@ -1,3 +1,4 @@
+#[allow(unused)]
 enum Test {
     V1,
     V2
@@ -11,6 +12,7 @@ fn bar(test: & mut Test) {
 
 fn foo(mut i: i8) {
     i = i + 1;
+    println!("{}", i)
 }
 
 fn main() {

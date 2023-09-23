@@ -20,4 +20,6 @@ fn main() {
 
     println!("{:?}", dir(a));
     println!("{:?}", dir(Direction::Up));
+    println!("{:?}", dir(Direction::Left));
+    println!("{:?}", dir(Direction::Right));
 }

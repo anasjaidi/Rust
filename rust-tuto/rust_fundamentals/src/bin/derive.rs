@@ -4,11 +4,11 @@ struct Test {
 }
 
 fn foo(t: Test) {
-    println!("{:?}", t)
+    println!("{:?}", t.num)
 }
  
 fn main() {
-    let mut t =  Test { num: 12 };
+    let t =  Test { num: 12 };
     foo(t);
     foo(t);
 }

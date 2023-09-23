@@ -6,15 +6,16 @@ impl Temp {
         println!("{}", self.number);
     }
 }
-struct Temp_2 {
+struct Temp2 {
     number: i32,
 }
-impl Temp_2 {
-    fn print(tmp: &Temp_2) {
+impl Temp2 {
+    fn print(tmp: &Temp2) {
         println!("{}", tmp.number);
     }
 }
 
+#[allow(unused)]
 enum Color {
     Red,
     Blue
@@ -29,12 +30,12 @@ impl Color {
     }
 }
 
-struct Temp_3 {
+struct Temp3 {
     number: i32,
     color: Color,
 }
-impl Temp_3 {
-    fn print(tmp: &Temp_3) {
+impl Temp3 {
+    fn print(tmp: &Temp3) {
         println!("{}", tmp.number);
         tmp.color.print();
     }
@@ -45,9 +46,9 @@ impl Temp_3 {
 
 fn main() {
     let tmp = Temp { number: 12 };
-    let tmp_2 = Temp_2 { number: 12 };
-    let tmp_3 = Temp_3::create();
+    let tmp_2 = Temp2 { number: 12 };
+    let tmp_3 = Temp3::create();
     tmp.print();
-    Temp_2::print(&tmp_2);
-    Temp_3::print(&tmp_3);
+    Temp2::print(&tmp_2);
+    Temp3::print(&tmp_3);
 }

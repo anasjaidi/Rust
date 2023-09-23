@@ -29,4 +29,7 @@ fn main() {
 
     let user_access_type = AccessType::Admin;
     println!("{:?}", check_access(user_access_type));
+    println!("{:?}", check_access(AccessType::Basic));
+    println!("{:?}", check_access(AccessType::Guest));
+    println!("{:?}", check_access(AccessType::Manager));
 }
