@@ -1,5 +1,3 @@
-use core::num;
-
 fn main() {
     let a = Some(12);
 

@@ -1,3 +1,5 @@
+#![allow(unused)]
+
 fn main() {
     let rng = 1..4;
     let rng = 1..=3;
