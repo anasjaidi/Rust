@@ -8,7 +8,7 @@ fn main() {
         }
     }
 
-    let mut v = vec![1, 2, 3];
+    let v = vec![1, 2, 3];
     let mut it = v.iter();
 
     while let Some(n)  = it.next() {
