@@ -43,6 +43,23 @@ impl Shipping for BigPackage {
 }
 
 
+//////////////////////////////////////////
+
+struct PackageA {
+    wieght: i32,
+}
+
+impl PackageA {
+    fn new() -> Self {
+        Self {wieght: 233}
+    }
+}
+impl Default for PackageA {
+    fn default() -> Self {
+        Self { wieght: 455 }
+    }
+}
+
 
 
 fn main() {
@@ -60,10 +77,17 @@ fn main() {
     sound(&a, &a_sound);
 
     /////////////////////////
-    /// 
     let s = SmallPackage;
     let b = BigPackage;
 
     println!("{}", s.ship_package());
     println!("{}", b.ship_package());
+
+    let pa = PackageA::default();
+
+    let pa_2 = PackageA::new();
+
+    println!("{}", pa.wieght);
+    println!("{}", pa_2.wieght);
+
 }
