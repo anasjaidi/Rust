@@ -1,3 +1,5 @@
+#![allow(unused)]
+
 fn main() {
     let v1: Vec<i32> = vec![1, 2, 3, 4].iter().map(|num| *num + 1).collect();
     let mut v2 = Vec::new();
