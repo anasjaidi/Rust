@@ -1,11 +1,11 @@
-trait Voice {
-    fn make_sound(&self, sound: &str);
-}
-
 struct  Car;
 
 struct  Animal;
 
+
+trait Voice {
+    fn make_sound(&self, sound: &str);
+}
 
 impl Voice for Car {
     fn make_sound(&self, sound: &str) {
@@ -23,6 +23,28 @@ fn sound(obj: &impl Voice, sound: &str) {
     obj.make_sound(sound);
 }
 
+////////////////////////////////////////////////////////////
+trait Shipping {
+    fn ship_package(&self) -> i32{
+        12
+    }
+}
+
+struct BigPackage;
+
+struct  SmallPackage;
+
+impl Shipping for SmallPackage {}
+
+impl Shipping for BigPackage {
+    fn ship_package(&self) -> i32 {
+        12345
+    }
+}
+
+
+
+
 fn main() {
     let a = Animal {};
     let c = Car;
@@ -36,4 +58,12 @@ fn main() {
 
     sound(&a, &c_sound);
     sound(&a, &a_sound);
+
+    /////////////////////////
+    /// 
+    let s = SmallPackage;
+    let b = BigPackage;
+
+    println!("{}", s.ship_package());
+    println!("{}", b.ship_package());
 }
