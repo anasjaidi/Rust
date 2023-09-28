@@ -1,10 +1,13 @@
 use std::collections::HashMap;
 
-use crate::data::{Flag, FlagType};
+use crate::{
+    data::{Flag, FlagType},
+    errors::ErrorsTypes,
+};
 
 fn check_flag<'a>(flag: &str, flags: &'a Vec<Flag>) -> Option<&'a Flag> {
     for f in flags {
-        if f.flag_long_form == flag || f.flag_short_form == flag {
+        if f.flag_long_form.eq(flag) || f.flag_short_form.eq(flag) {
             return Some(f);
         }
     }
@@ -20,7 +23,6 @@ fn get_flag_input(
     while index < input.len() && !input[index].starts_with("-") {
         if let Some(entry) = map.get_mut(flag) {
             entry.push(input[index].clone());
-            dbg!(entry);
         } else {
             map.insert(flag.to_owned(), vec![input[index].clone()]);
         }
@@ -30,31 +32,45 @@ fn get_flag_input(
     index
 }
 
-pub fn parse_input(
-    input: &Vec<String>,
+pub fn parse_input<'a>(
+    input: &'a Vec<String>,
     allowed_flags: &Vec<Flag>,
-) -> Result<HashMap<String, Vec<String>>, String> {
+) -> Result<HashMap<String, Vec<String>>, ErrorsTypes<'a>> {
     let mut map: HashMap<String, Vec<String>> = HashMap::new();
+    let mut self_flag = None;
 
     let mut i = 0 as usize;
 
-    if !input[0].starts_with("-") {
-        return Err("Form Forbiden".to_owned());
+    if input.len() == 0 {
+        return Err(ErrorsTypes::NoArgs(1));
     }
 
     while i < input.len() {
+        if !input[i].starts_with("-") {
+            return match self_flag {
+                Some(f) => Err(ErrorsTypes::FlagExpectNoArgs(12, f)),
+                None => Err(ErrorsTypes::ArgsWithNoFlag(12)),
+            };
+        }
         match check_flag(&input[i], allowed_flags) {
             Some(flag) => match flag.flag_type {
                 FlagType::ContainerFlag => {
-                    i = get_flag_input(flag.flag_long_form, &mut map, i, input)
+                    let index = get_flag_input(flag.flag_long_form, &mut map, i + 1, input);
+
+                    if index == i + 1 {
+                        return Err(ErrorsTypes::FlagExpectArgs(12, &input[i]));
+                    }
+
+                    i = index;
                 }
                 FlagType::SelfFlag => {
                     map.insert(flag.flag_long_form.to_owned(), vec![]);
+                    self_flag = Some(&input[i]);
                     i += 1
                 }
             },
             None => {
-                return Err("Flag not supported".to_owned());
+                return Err(ErrorsTypes::UnknownFlag(12, &input[i]));
             }
         }
     }
