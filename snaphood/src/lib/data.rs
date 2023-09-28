@@ -21,5 +21,10 @@ pub fn get_allowed_flags() -> Vec<Flag> {
             flag_short_form: "-o",
             flag_type: FlagType::ContainerFlag,
         },
+        Flag {
+            flag_long_form: "--replace",
+            flag_short_form: "-r",
+            flag_type: FlagType::SelfFlag,
+        },
     ];
 }
