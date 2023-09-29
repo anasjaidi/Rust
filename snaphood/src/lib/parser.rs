@@ -15,8 +15,8 @@ fn check_flag<'a>(flag: &str, flags: &'a Vec<Flag>) -> Option<&'a Flag> {
 }
 
 fn get_flag_input(
-    flag: &str,
-    map: &mut HashMap<String, Vec<String>>,
+    flag: &Flag,
+    map: &mut HashMap<Flag, Vec<String>>,
     mut index: usize,
     input: &Vec<String>,
 ) -> usize {
@@ -24,7 +24,7 @@ fn get_flag_input(
         if let Some(entry) = map.get_mut(flag) {
             entry.push(input[index].clone());
         } else {
-            map.insert(flag.to_owned(), vec![input[index].clone()]);
+            map.insert(flag.clone(), vec![input[index].clone()]);
         }
         index += 1;
     }
@@ -35,8 +35,8 @@ fn get_flag_input(
 pub fn parse_input<'a>(
     input: &'a Vec<String>,
     allowed_flags: &Vec<Flag>,
-) -> Result<HashMap<String, Vec<String>>, ErrorsTypes<'a>> {
-    let mut map: HashMap<String, Vec<String>> = HashMap::new();
+) -> Result<HashMap<Flag, Vec<String>>, ErrorsTypes<'a>> {
+    let mut map: HashMap<Flag, Vec<String>> = HashMap::new();
     let mut self_flag = None;
 
     let mut i = 0 as usize;
@@ -55,7 +55,7 @@ pub fn parse_input<'a>(
         match check_flag(&input[i], allowed_flags) {
             Some(flag) => match flag.flag_type {
                 FlagType::ContainerFlag => {
-                    let index = get_flag_input(flag.flag_long_form, &mut map, i + 1, input);
+                    let index = get_flag_input(flag, &mut map, i + 1, input);
 
                     if index == i + 1 {
                         return Err(ErrorsTypes::FlagExpectArgs(12, &input[i]));
@@ -64,7 +64,7 @@ pub fn parse_input<'a>(
                     i = index;
                 }
                 FlagType::SelfFlag => {
-                    map.insert(flag.flag_long_form.to_owned(), vec![]);
+                    map.insert(flag.clone(), vec![]);
                     self_flag = Some(&input[i]);
                     i += 1
                 }
