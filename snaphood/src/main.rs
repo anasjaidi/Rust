@@ -1,5 +1,4 @@
 use std::env;
-use std::fs;
 use snaphood::data::*;
 fn main() {
     // Retrieve the provided file paths passed as arguments
@@ -16,5 +15,5 @@ fn main() {
         },
         Ok(map) => map
     };
-    let _map = dbg!(map);
+    // let _map = dbg!(map);
 }
