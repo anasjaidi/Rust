@@ -3,6 +3,7 @@ use std::collections::HashMap;
 use crate::{
     data::{Flag, FlagType},
     errors::ErrorsTypes,
+    args_checker::{check_args, self},
 };
 
 fn check_flag<'a>(flag: &str, flags: &'a Vec<Flag>) -> Option<&'a Flag> {
@@ -32,10 +33,10 @@ fn get_flag_input(
     index
 }
 
-pub fn parse_input<'a>(
-    input: &'a Vec<String>,
+pub fn parse_input(
+    input: & Vec<String>,
     allowed_flags: &Vec<Flag>,
-) -> Result<HashMap<Flag, Vec<String>>, ErrorsTypes<'a>> {
+) -> Result<HashMap<Flag, Vec<String>>, ErrorsTypes> {
     let mut map: HashMap<Flag, Vec<String>> = HashMap::new();
     let mut self_flag = None;
 
@@ -70,10 +71,12 @@ pub fn parse_input<'a>(
                 }
             },
             None => {
-                return Err(ErrorsTypes::UnknownFlag(12, &input[i]));
+                return Err(ErrorsTypes::UnknownFlag(12, &input[i].clone()));
             }
         }
     }
-
-    Ok(map)
+    match args_checker::check_args(&map) {
+        Err(err) => return Err(err),
+        Ok(_) => return Ok(map)
+    }
 }
