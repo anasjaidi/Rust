@@ -1,9 +1,9 @@
 pub enum ErrorsTypes {
     NoArgs(u8),
     ArgsWithNoFlag(u8),
-    UnknownFlag(u8, &'static str),
-    FlagExpectArgs(u8, &'static str),
-    FlagExpectNoArgs(u8, &'static str),
+    UnknownFlag(u8, String),
+    FlagExpectArgs(u8, String),
+    FlagExpectNoArgs(u8, String),
     FileReadPermissionDenied(u8),
     ExpectFile(u8)
 }
