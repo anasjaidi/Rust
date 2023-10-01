@@ -1,9 +1,9 @@
 use std::collections::HashMap;
 
 use crate::{
+    args_checker,
     data::{Flag, FlagType},
     errors::ErrorsTypes,
-    args_checker,
 };
 
 fn check_flag<'a>(flag: &str, flags: &'a Vec<Flag>) -> Option<&'a Flag> {
@@ -24,8 +24,6 @@ fn get_flag_input(
     while index < input.len() && !input[index].starts_with("-") {
         if let Some(entry) = map.get_mut(flag) {
             entry.push(input[index].clone());
-        } else {
-            map.insert(flag.clone(), vec![input[index].clone()]);
         }
         index += 1;
     }
@@ -34,11 +32,10 @@ fn get_flag_input(
 }
 
 pub fn parse_input(
-    input: & Vec<String>,
+    input: &Vec<String>,
     allowed_flags: &Vec<Flag>,
 ) -> Result<HashMap<Flag, Vec<String>>, ErrorsTypes> {
     let mut map: HashMap<Flag, Vec<String>> = HashMap::new();
-    let mut self_flag: Option<&str> = None;
 
     let mut i = 0 as usize;
 
@@ -47,29 +44,12 @@ pub fn parse_input(
     }
 
     while i < input.len() {
-        if !input[i].starts_with("-") {
-            return match self_flag {
-                Some(f) => Err(ErrorsTypes::FlagExpectNoArgs(12, f.to_owned())),
-                None => Err(ErrorsTypes::ArgsWithNoFlag(12)),
-            };
-        }
         match check_flag(&input[i], allowed_flags) {
-            Some(flag) => match flag.flag_type {
-                FlagType::ContainerFlag => {
-                    let index = get_flag_input(flag, &mut map, i + 1, input);
-
-                    if index == i + 1 {
-                        return Err(ErrorsTypes::FlagExpectArgs(12, input[i].to_owned()));
-                    }
-
-                    i = index;
-                }
-                FlagType::SelfFlag => {
-                    map.insert(flag.clone(), vec![]);
-                    self_flag = Some(&input[i]);
-                    i += 1
-                }
-            },
+            Some(flag) => {
+                map.insert(flag.clone(), vec![]);
+                i += 1;
+                i = get_flag_input(flag, &mut map, i, input);
+            }
             None => {
                 return Err(ErrorsTypes::UnknownFlag(12, input[i].clone()));
             }
@@ -77,6 +57,6 @@ pub fn parse_input(
     }
     match args_checker::check_args(&map) {
         Err(err) => return Err(err),
-        Ok(_) => return Ok(map)
+        Ok(_) => return Ok(map),
     }
 }
