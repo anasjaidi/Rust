@@ -1,11 +1,11 @@
-#[derive(Eq, PartialEq, Hash, Clone)]
+#[derive(Eq, PartialEq, Hash, Clone, Debug)]
 pub enum FlagType {
     ContainerFlag,
     // SingleContainerFlag,
     SelfFlag,
 }
 
-#[derive(Eq, PartialEq, Hash, Clone)]
+#[derive(Eq, PartialEq, Hash, Clone, Debug)]
 pub enum ArgsType {
     ReadFile,
     CreateFile,
@@ -14,7 +14,7 @@ pub enum ArgsType {
     NoArgs,
 }
 
-#[derive(PartialEq, Eq, Hash, Clone)]
+#[derive(PartialEq, Eq, Hash, Clone, Debug)]
 pub struct Flag {
     pub flag_short_form: &'static str,
     pub flag_long_form: &'static str,
