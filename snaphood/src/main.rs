@@ -15,5 +15,5 @@ fn main() {
         },
         Ok(map) => map
     };
-    // let _map = dbg!(map);
+    let _map = dbg!(map);
 }
