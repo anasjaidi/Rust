@@ -20,6 +20,7 @@ pub struct Flag {
     pub flag_long_form: &'static str,
     pub flag_type: FlagType,
     pub args_type: ArgsType,
+    pub required: bool,
 }
 
 pub fn get_allowed_flags() -> Vec<Flag> {
@@ -29,18 +30,21 @@ pub fn get_allowed_flags() -> Vec<Flag> {
             flag_long_form: "--input",
             flag_short_form: "-i",
             args_type: ArgsType::ReadFile,
+            required: true,
         },
         Flag {
             flag_long_form: "--output",
             flag_short_form: "-o",
             flag_type: FlagType::ContainerFlag,
             args_type: ArgsType::CreateFolder,
+            required: false,
         },
         Flag {
             flag_long_form: "--replace",
             flag_short_form: "-r",
             flag_type: FlagType::SelfFlag,
             args_type: ArgsType::NoArgs,
+            required: false,
         },
     ];
 }
