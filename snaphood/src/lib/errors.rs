@@ -7,11 +7,16 @@ pub enum ErrorsTypes {
     FileReadPermissionDenied(u8),
     ExpectFile(u8),
     FileNotFound(u8, String),
+    FlagIsRequired(u8, String),
 }
 
 impl ErrorsTypes {
     pub fn print(&self) {
         match self {
+            ErrorsTypes::FlagIsRequired(_code, f) => {
+                println!("flag is required {f}")
+            }
+
             Self::ArgsWithNoFlag(code) => {
                 println!("{code}: ArgsWithNoFlag")
             }
@@ -26,13 +31,13 @@ impl ErrorsTypes {
             }
             Self::FlagExpectNoArgs(code, flag) => {
                 println!("{code}: FlagExpectNoArgs {}", flag)
-            },
+            }
             Self::FileReadPermissionDenied(_code) => {
                 println!("file not have read permission")
-            },
+            }
             Self::ExpectFile(_code) => {
                 println!("expect file")
-            },
+            }
             Self::FileNotFound(_code, file) => {
                 println!("file not found: {file}")
             }
