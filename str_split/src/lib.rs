@@ -1,7 +1,17 @@
-pub struct StrSplit {}
+pub struct StrSplit<'a> {
+    data: &'a str
+}
 
-impl StrSplit {
+impl<'a> StrSplit<'a> {
     pub fn new(haystack: &str, del: &str) -> Self {
-        StrSplit {  }       
+        StrSplit { data: "anas"}       
+    }
+}
+
+impl<'a> Iterator for StrSplit<'a> {
+    type Item = &'a str;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        None
     }
 }
