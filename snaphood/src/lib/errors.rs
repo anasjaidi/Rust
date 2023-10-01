@@ -5,7 +5,8 @@ pub enum ErrorsTypes {
     FlagExpectArgs(u8, String),
     FlagExpectNoArgs(u8, String),
     FileReadPermissionDenied(u8),
-    ExpectFile(u8)
+    ExpectFile(u8),
+    FileNotFound(u8, String),
 }
 
 impl ErrorsTypes {
@@ -31,6 +32,9 @@ impl ErrorsTypes {
             },
             Self::ExpectFile(_code) => {
                 println!("expect file")
+            },
+            Self::FileNotFound(_code, file) => {
+                println!("file not found: {file}")
             }
         }
     }
