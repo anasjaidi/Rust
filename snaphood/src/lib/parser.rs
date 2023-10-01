@@ -55,6 +55,17 @@ pub fn parse_input(
             }
         }
     }
+    let required_flags: Vec<Flag> = allowed_flags
+        .iter()
+        .filter(|f| f.required == true)
+        .cloned()
+        .collect();
+    match args_checker::required_flags_checker(&required_flags, &map) {
+        Err(err) => {
+            return Err(err);
+        }
+        Ok(()) => {}
+    }
     match args_checker::check_args(&map) {
         Err(err) => return Err(err),
         Ok(_) => return Ok(map),
