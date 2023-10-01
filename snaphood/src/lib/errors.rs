@@ -1,28 +1,36 @@
-pub enum ErrorsTypes<'a> {
+pub enum ErrorsTypes {
     NoArgs(u8),
     ArgsWithNoFlag(u8),
-    UnknownFlag(u8, &'a str),
-    FlagExpectArgs(u8, &'a str),
-    FlagExpectNoArgs(u8, &'a str)
+    UnknownFlag(u8, String),
+    FlagExpectArgs(u8, String),
+    FlagExpectNoArgs(u8, String),
+    FileReadPermissionDenied(u8),
+    ExpectFile(u8)
 }
 
-impl<'a> ErrorsTypes<'a> {
+impl ErrorsTypes {
     pub fn print(&self) {
         match self {
-            ErrorsTypes::ArgsWithNoFlag(code) => {
+            Self::ArgsWithNoFlag(code) => {
                 println!("{code}: ArgsWithNoFlag")
             }
-            ErrorsTypes::NoArgs(code) => {
+            Self::NoArgs(code) => {
                 println!("{code}: NoArgs")
             }
-            ErrorsTypes::UnknownFlag(code, flag) => {
+            Self::UnknownFlag(code, flag) => {
                 print!("{code}: UnknownFlag {}", flag)
             }
-            ErrorsTypes::FlagExpectArgs(code, flag) => {
+            Self::FlagExpectArgs(code, flag) => {
                 println!("{code}: FlagExpectArgs {}", flag)
             }
-            ErrorsTypes::FlagExpectNoArgs(code, flag) => {
+            Self::FlagExpectNoArgs(code, flag) => {
                 println!("{code}: FlagExpectNoArgs {}", flag)
+            },
+            Self::FileReadPermissionDenied(_code) => {
+                println!("file not have read permission")
+            },
+            Self::ExpectFile(_code) => {
+                println!("expect file")
             }
         }
     }
