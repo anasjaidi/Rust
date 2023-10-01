@@ -36,6 +36,22 @@ fn check_flag_arg_content(f: &Flag, args: &Vec<String>) -> Result<(), ErrorsType
     }
 }
 
+pub fn required_flags_checker(
+    required_flags: &Vec<Flag>,
+    flags_map: &HashMap<Flag, Vec<String>>,
+) -> Result<(), ErrorsTypes> {
+    for f in required_flags {
+        if let None = flags_map
+            .iter()
+            .find(|(k, _)| k.flag_long_form == f.flag_long_form)
+        {
+            return Err(ErrorsTypes::FlagIsRequired(12, f.flag_long_form.to_owned()));
+        }
+    }
+
+    Ok(())
+}
+
 pub fn check_args(map: &HashMap<Flag, Vec<String>>) -> Result<(), ErrorsTypes> {
     for (k, v) in map {
         check_flag_arg_content(k, v)?;
