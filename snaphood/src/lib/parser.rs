@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use crate::{
     args_checker,
-    data::{Flag, FlagType},
+    data::Flag,
     errors::ErrorsTypes,
 };
 

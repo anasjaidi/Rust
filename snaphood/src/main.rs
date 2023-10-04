@@ -1,5 +1,5 @@
 use std::env;
-use snaphood::data::*;
+use snaphood::{data::*, hasher::*};
 fn main() {
     // Retrieve the provided file paths passed as arguments
     let args: Vec<String> = env::args().skip(1).collect();
@@ -15,5 +15,5 @@ fn main() {
         },
         Ok(map) => map
     };
-    let _map = dbg!(map);
+    dbg!(get_hasher(&map));
 }
