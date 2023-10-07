@@ -72,16 +72,27 @@ pub fn check_args(map: &HashMap<Flag, Vec<String>>) -> Result<(), ErrorsTypes> {
             ArgsType::ReadFile => {
                 for file in v {
                     if let Ok(f) = fs::metadata(file) {
-                        match check_file(&f, 0b100) {
+                        match check_arg_type(&f, 0b100, ArgType::File, file) {
                             Err(err) => return Err(err),
-                            Ok(_) => return Ok(()),
+                            _ => {}
                         }
                     } else {
                         return Err(ErrorsTypes::FileNotFound(12, file.to_owned()));
                     }
                 }
             }
-            ArgsType::ReadFolder => for folder in v {},
+            ArgsType::ReadFolder => {
+                for folder in v {
+                    if let Ok(meta) = fs::metadata(folder) {
+                        match check_arg_type(&meta, 0b100, ArgType::Folder, folder) {
+                            Err(err) => return Err(err),
+                            _ => {}
+                        }
+                    } else {
+                        return Err(ErrorsTypes::FolderNotFound(12, folder.to_owned()));
+                    }
+                }
+            }
             _ => {}
         }
     }

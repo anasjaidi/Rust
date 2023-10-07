@@ -8,13 +8,16 @@ pub enum ErrorsTypes {
     FileReadPermissionDenied(u8),
     ExpectFile(u8, String),
     FileNotFound(u8, String),
+    FolderNotFound(u8, String),
     FlagIsRequired(u8, String),
 }
 
 impl ErrorsTypes {
     pub fn print(&self) {
         match self {
-
+            ErrorsTypes::FolderNotFound(_code, folder) => {
+                println!("folder not found {}", folder)
+            }
             ErrorsTypes::ExpectFolder(_code, folder) => {
                 println!("expect folder: {}", folder)
             }
