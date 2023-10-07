@@ -11,3 +11,4 @@ name = "snaphood"
 
 [dependencies]
 clap = "4.4.5"
+zip = "0.6.6"
