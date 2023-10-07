@@ -9,9 +9,22 @@ use crate::{
     errors::ErrorsTypes,
 };
 
-fn check_file(metadata: &Metadata, mode: u32) -> Result<(), ErrorsTypes> {
-    if !metadata.is_file() {
-        return Err(ErrorsTypes::ExpectFile(12));
+#[derive(PartialEq)]
+enum ArgType {
+    Folder,
+    File,
+}
+
+fn check_arg_type(
+    metadata: &Metadata,
+    mode: u32,
+    arg_type: ArgType,
+    arg_name: &str,
+) -> Result<(), ErrorsTypes> {
+    if arg_type == ArgType::File && !metadata.is_file() {
+        return Err(ErrorsTypes::ExpectFile(12, arg_name.to_owned()));
+    } else if arg_type == ArgType::Folder && !metadata.is_dir() {
+        return Err(ErrorsTypes::ExpectFolder(12, arg_name.to_owned()));
     }
 
     if metadata.permissions().mode() & mode == 0 {
@@ -68,6 +81,7 @@ pub fn check_args(map: &HashMap<Flag, Vec<String>>) -> Result<(), ErrorsTypes> {
                     }
                 }
             }
+            ArgsType::ReadFolder => for folder in v {},
             _ => {}
         }
     }
