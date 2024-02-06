@@ -4,7 +4,7 @@ import { connect } from './utils/connect';
 
 
 
-const getBalanceInSol = async (pk: PublicKey) => {
+export const getBalanceInSol = async (pk: PublicKey) => {
     const connection = await connect()
     const balance = await connection.getBalance(pk)
     return balance / LAMPORTS_PER_SOL
