@@ -1,8 +1,7 @@
-import { Connection, Cluster, clusterApiUrl, PublicKey, LAMPORTS_PER_SOL } from '@solana/web3.js';
+import { PublicKey, LAMPORTS_PER_SOL } from '@solana/web3.js';
 import { kp } from './utils/key-pair';
-const connect = async () => {
-  return new Connection(clusterApiUrl('devnet'), 'confirmed');
-};
+import { connect } from './utils/connect';
+
 
 
 const getBalanceInSol = async (pk: PublicKey) => {
