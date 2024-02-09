@@ -1,4 +1,5 @@
 use std::ffi::c_void;
+use std::fmt::Debug;
 use libc::{c_char, c_int, size_t};
 use libft_lib::*;
 
@@ -12,7 +13,67 @@ fn view_buffer(buffer: &[u8], expected: &[u8], function_name: &str) {
 
 }
 
+fn test<T: Debug>(t: T) {
+    println!("{:?}", t);
+}
+
+struct Req {
+    body: String,
+}
+
+struct Res {
+    body: i32,
+}
+
+struct Athena;
+
+impl Athena {
+    pub fn get(&self, route: &str, handler: fn(Req, Res)) {
+        handler(Req {body: "anas jaidi".to_owned()}, Res {body: 12})
+    }
+
+    fn new() -> Self {
+        Self
+    }
+}
+
+
 fn main() {
+    // let app = Athena::new();
+
+    // let mut i =12;
+    //
+    //
+    //
+    // let mut x = &mut i;
+    //
+    // let   mut cb = move  || {
+    //   *x = 13;
+    // };
+    //
+    //
+    // cb();
+    //
+    // println!("{}",i);
+
+    let i = 12u32;
+    let x = Some(x);
+
+    match x {
+        Some(x) if x == 12 => {},
+        None => {}
+    };
+
+    match i {
+        x @ 0..=10 => println!("0..=10 = {}", x),
+        x @ 10..  if  x != 12 => println!("more {}", x),
+        _ => println!("12")
+    };
+}
+
+fn old_main() {
+
+
 
     let mut buffer: [u8; 12] = [97; 12];
     let mut dist: [u8; 12] = [102; 12];
@@ -31,6 +92,9 @@ fn main() {
 
     let num_c = 65 as c_int;
     let num_rust = 65i32;
+
+    let i = "123".parse::<u8>().unwrap();
+
 
     // start c testing
     {
